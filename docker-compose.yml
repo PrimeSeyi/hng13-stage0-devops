@@ -1,28 +1,25 @@
 version: '3.8'
 
 services:
-  # The "Blue" version of your app
   app-blue:
     build: .
     container_name: app-blue
     environment:
-      - APP_COLOR=blue
+      - APP_COLOR=${BLUE_APP_COLOR}
     restart: always
 
-  # The "Green" version of your app
   app-green:
     build: .
     container_name: app-green
     environment:
-      - APP_COLOR=green
+      - APP_COLOR=${GREEN_APP_COLOR}
     restart: always
 
-  # The Traffic Cop (Nginx)
   nginx-proxy:
     image: nginx:alpine
     container_name: nginx-proxy
     ports:
-      - "80:80"
+      - "${WEB_PORT}:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
