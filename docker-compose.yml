@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  stage1-app:
+    build: .
+    container_name: hng-stage1-app
+    restart: always
+    ports:
+      # HostPort : ContainerPort
+      - "8080:80"
